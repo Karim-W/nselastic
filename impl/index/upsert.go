@@ -38,7 +38,7 @@ func (i *index_[T]) Upsert(ctx context.Context, id string, doc T) error {
 
 	if err := json.Unmarshal(body, &errObj); err != nil {
 		return errors.New(
-			"failed to create index with status code " + strconv.Itoa(
+			"failed to upsert document with status code " + strconv.Itoa(
 				code,
 			) + " and body " + string(
 				body,

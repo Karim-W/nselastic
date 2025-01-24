@@ -4,6 +4,7 @@ go 1.21.0
 
 require (
 	github.com/google/uuid v1.3.0
+	github.com/karim-w/gopts v1.1.3
 	github.com/karim-w/stdlib v0.5.2
 )
 
