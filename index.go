@@ -43,9 +43,15 @@ type Index[T any] interface {
 		ctx context.Context,
 		ids ...string,
 	) ([]T, error)
+	// Query - queries the index with the given query.
+	// - ctx: the context of the request.
+	// - query: the query to be executed
+	// Returns:
+	// - list: a list of documents.
+	// - error: an error if any.
 	Query(
 		ctx context.Context,
-		query string,
+		query Queryable,
 	) ([]T, error)
 	// Ensure - ensures the index exists.
 	// Returns:
