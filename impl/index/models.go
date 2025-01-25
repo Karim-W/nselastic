@@ -1,5 +1,9 @@
 package index
 
+type _ListResult[T any] struct {
+	Docs []_FetchResult[T] `json:"docs"`
+}
+
 type _FetchResult[T any] struct {
 	Index   string `json:"_index"`
 	Type    string `json:"_type"`

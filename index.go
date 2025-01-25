@@ -26,13 +26,29 @@ type Index[T any] interface {
 		ctx context.Context,
 		id string,
 	) (gopts.Option[T], error)
+	// Delete - deletes one or many documents from the index.
+	// - ctx: the context of the request.
+	// - ids: the ids of the documents to be deleted. multi argument field for multiple ids.
 	Delete(
 		ctx context.Context,
 		ids ...string,
 	) error
+	// List - retrieves one or many documents from the index.
+	// - ctx: the context of the request.
+	// - ids: the ids of the documents to be retrieved. multi argument field for multiple ids.
+	// Returns:
+	// - list: a list of documents.
+	// - error: an error if any.
+	List(
+		ctx context.Context,
+		ids ...string,
+	) ([]T, error)
 	Query(
 		ctx context.Context,
 		query string,
 	) ([]T, error)
+	// Ensure - ensures the index exists.
+	// Returns:
+	// - error: an error if any.
 	Ensure() error
 }
