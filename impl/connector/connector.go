@@ -6,7 +6,6 @@ import (
 
 type connector_ struct {
 	host, username, password string
-	hook                     nselastic.Hook
 }
 
 func New(host, username, password string) nselastic.Connector {

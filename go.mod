@@ -13,6 +13,7 @@ require (
 	github.com/BetaLixT/appInsightsTrace v0.2.3 // indirect
 	github.com/Soreing/retrier v1.3.0 // indirect
 	github.com/gofrs/uuid v4.2.0+incompatible // indirect
+	github.com/karim-w/cafe v0.4.3
 	github.com/microsoft/ApplicationInsights-Go v0.4.4 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	go.uber.org/zap v1.27.0 // indirect

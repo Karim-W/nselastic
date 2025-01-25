@@ -33,6 +33,8 @@ github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5y
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/hpcloud/tail v1.0.0/go.mod h1:ab1qPbhIpdTxEkNHXyeSf5vhxWSCs/tWer42PpOxQnU=
+github.com/karim-w/cafe v0.4.3 h1:atUgRZ0px4wlZ5ix08YJiL0E4fiC7qqDtHPN06U/Y4c=
+github.com/karim-w/cafe v0.4.3/go.mod h1:7rWxoxzvd0tmjayeuSOD8vXXdoc4oKvyr2Pc2bkVGZk=
 github.com/karim-w/go-test v1.0.2 h1:SCQ+L45FRozhRO1qnjpdUrW7gD1RWFd1KkkTwdt8Zcg=
 github.com/karim-w/go-test v1.0.2/go.mod h1:GSZG1dZqpevOirWAxq4JJe2rBo/GVV2+fYpQ19QanH4=
 github.com/karim-w/gopts v1.1.3 h1:EeRJZAO4bsPVPsxW+iJUrMpQWFb3Vqc/3x1wOOvvT10=
