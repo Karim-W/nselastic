@@ -21,7 +21,7 @@ func (i *index_[T]) Ensure() error {
 
 	body := res.GetBody()
 
-	var errObj nselastic.ElasticError
+	var errObj nselastic.Error
 
 	if err := json.Unmarshal(body, &errObj); err != nil {
 		return errors.New(

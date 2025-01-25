@@ -8,7 +8,7 @@ type TraceInfo struct {
 	Query     Queryable
 }
 
-type ElasticError struct {
+type Error struct {
 	Err    ErrorDetails `json:"error"`
 	Status int64        `json:"status"`
 }
@@ -21,8 +21,8 @@ type ErrorDetails struct {
 	Index     string         `json:"index"`
 }
 
-func (e *ElasticError) Error() string {
+func (e *Error) Error() string {
 	return e.Err.Reason
 }
 
-var _ error = &ElasticError{}
+var _ error = &Error{}

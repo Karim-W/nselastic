@@ -28,7 +28,7 @@ type Index[T any] interface {
 	) (gopts.Option[T], error)
 	Delete(
 		ctx context.Context,
-		id string,
+		ids ...string,
 	) error
 	Query(
 		ctx context.Context,

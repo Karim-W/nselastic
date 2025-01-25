@@ -34,7 +34,7 @@ func (i *index_[T]) Upsert(ctx context.Context, id string, doc T) error {
 	body := res.GetBody()
 	code := res.GetStatusCode()
 
-	var errObj nselastic.ElasticError
+	var errObj nselastic.Error
 
 	if err := json.Unmarshal(body, &errObj); err != nil {
 		return errors.New(

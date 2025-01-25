@@ -11,11 +11,6 @@ type index_[T any] struct {
 	index     string
 }
 
-// Delete implements nselastic.Index.
-func (i *index_[T]) Delete(ctx context.Context, id string) error {
-	panic("unimplemented")
-}
-
 // Query implements nselastic.Index.
 func (i *index_[T]) Query(ctx context.Context, query string) ([]T, error) {
 	panic("unimplemented")
