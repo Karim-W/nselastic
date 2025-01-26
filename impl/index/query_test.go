@@ -65,7 +65,7 @@ func TestQuery(t *testing.T) {
 	time.Sleep(5 * time.Second)
 
 	// the fetch part
-	list, err := idx.Query(context.TODO(), nselastic.Queryable{
+	res, err := idx.Query(context.TODO(), nselastic.Queryable{
 		From: gopts.Some(0),
 		Size: gopts.Some(1000),
 		SortingOptions: []nselastic.SortingOptions{{
@@ -92,6 +92,12 @@ func TestQuery(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	if res.Total != 1 {
+		t.Fatalf("expected 1 got %d", res.Total)
+	}
+
+	list := res.Data
 
 	if len(list) != 1 {
 		t.Fatalf("expected 1 got %d", len(list))

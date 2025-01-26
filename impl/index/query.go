@@ -9,7 +9,10 @@ import (
 	"github.com/karim-w/nselastic"
 )
 
-func (i *index_[T]) Query(ctx context.Context, query nselastic.Queryable) (list []T, err error) {
+func (i *index_[T]) Query(
+	ctx context.Context,
+	query nselastic.Queryable,
+) (QR nselastic.QueryResult[T], err error) {
 	m := build_elastic_query(query)
 
 	res := i.Connector.Req("/" + i.index + "/_search").JSON().AddBody(m).Post()
@@ -42,11 +45,13 @@ func (i *index_[T]) Query(ctx context.Context, query nselastic.Queryable) (list 
 		return
 	}
 
-	list = make([]T, 0, len(result.Hits.Hits))
+	QR.Data = make([]T, 0, len(result.Hits.Hits))
 
 	for _, hit := range result.Hits.Hits {
-		list = append(list, hit.Source)
+		QR.Data = append(QR.Data, hit.Source)
 	}
+
+	QR.Total = result.Hits.Total.Value
 
 	return
 }
@@ -72,6 +77,6 @@ type Hit[T any] struct {
 }
 
 type Total struct {
-	Value    int64  `json:"value"`
+	Value    int    `json:"value"`
 	Relation string `json:"relation"`
 }

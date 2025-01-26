@@ -52,7 +52,7 @@ type Index[T any] interface {
 	Query(
 		ctx context.Context,
 		query Queryable,
-	) ([]T, error)
+	) (QueryResult[T], error)
 	// Ensure - ensures the index exists.
 	// Returns:
 	// - error: an error if any.

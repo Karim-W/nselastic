@@ -48,6 +48,14 @@ type Queryable struct {
 	Search QueryBody
 }
 
+// QueryResult is the **paged* response of the query.
+type QueryResult[T any] struct {
+	// Data is the list of documents.
+	Data []T
+	// Total is the total number of documents.
+	Total int
+}
+
 type TraceInfo struct {
 	Index, Id string
 	Doc       interface{}
