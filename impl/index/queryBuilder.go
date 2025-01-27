@@ -1,6 +1,10 @@
 package index
 
-import "github.com/karim-w/nselastic"
+import (
+	"strings"
+
+	"github.com/karim-w/nselastic"
+)
 
 const (
 	_DEFAULT_SIZE = 1000
@@ -122,12 +126,7 @@ func build_elastic_query(
 		)
 
 		for _, f := range body.Search.Equal {
-			f := map[string]interface{}{
-				"term": map[string]interface{}{
-					f.Key: f.Value,
-				},
-			}
-			filters = append(filters, f)
+			filters = append(filters, term_breaker(f.Key, f.Value)...)
 		}
 
 		for _, f := range filters {
@@ -150,12 +149,7 @@ func build_elastic_query(
 		)
 
 		for _, f := range body.Search.NotEqual {
-			f := map[string]interface{}{
-				"term": map[string]interface{}{
-					f.Key: f.Value,
-				},
-			}
-			filters = append(filters, f)
+			filters = append(filters, term_breaker(f.Key, f.Value)...)
 		}
 
 		for _, f := range filters {
@@ -165,5 +159,57 @@ func build_elastic_query(
 		m["query"].(map[string]interface{})["bool"].(map[string]interface{})["must_not"] = v
 	}
 
+	if len(body.Search.In) > 0 {
+
+		v, ok := m["query"].(map[string]interface{})["bool"].(map[string]interface{})["should"]
+		if !ok {
+			v = []map[string]interface{}{}
+		}
+
+		filters := make([]map[string]interface{}, 0, len(body.Search.In))
+
+		for _, f := range body.Search.In {
+			filters = append(filters, term_breaker(f.Key, f.Value)...)
+		}
+
+		for _, f := range filters {
+			v = append(v.([]map[string]interface{}), f)
+		}
+
+		m["query"].(map[string]interface{})["bool"].(map[string]interface{})["should"] = v
+	}
+
 	return m
+}
+
+func term_breaker(key string, value any) (res []map[string]interface{}) {
+	// if not a string, return the value as is
+	if _, ok := value.(string); !ok {
+		return []map[string]interface{}{
+			{
+				"term": map[string]interface{}{
+					key: value,
+				},
+			},
+		}
+	}
+
+	v := strings.ToLower(value.(string))
+	vs := strings.Split(v, " ")
+
+	res = make([]map[string]interface{}, 0, len(vs))
+
+	for _, s := range vs {
+		if s == "" {
+			continue
+		}
+
+		res = append(res, map[string]interface{}{
+			"term": map[string]interface{}{
+				key: s,
+			},
+		})
+	}
+
+	return
 }

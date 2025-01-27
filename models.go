@@ -29,6 +29,9 @@ type QueryBody struct {
 	Equal []Filters
 	// NotEqual is a list of filters to be excluded from the data.
 	NotEqual []Filters
+	// In is a list of filters where the value should match any of the values
+	// in an OR fashion
+	In []Filters
 }
 
 // SortingOptions is a list of sorting options to be applied on the data.

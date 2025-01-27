@@ -2,6 +2,7 @@ package index_test
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -96,6 +97,8 @@ func TestQuery(t *testing.T) {
 	if res.Total != 1 {
 		t.Fatalf("expected 1 got %d", res.Total)
 	}
+
+	fmt.Println(res.Data)
 
 	list := res.Data
 
