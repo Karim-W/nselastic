@@ -65,15 +65,15 @@ type _SearchResult[T any] struct {
 
 type Hits[T any] struct {
 	Total    Total    `json:"total"`
-	MaxScore int64    `json:"max_score"`
+	MaxScore any      `json:"max_score"`
 	Hits     []Hit[T] `json:"hits"`
 }
 
 type Hit[T any] struct {
-	Index  string  `json:"_index"`
-	ID     string  `json:"_id"`
-	Score  float64 `json:"_score"`
-	Source T       `json:"_source"`
+	Index  string `json:"_index"`
+	ID     string `json:"_id"`
+	Score  any    `json:"_score"`
+	Source T      `json:"_source"`
 }
 
 type Total struct {
