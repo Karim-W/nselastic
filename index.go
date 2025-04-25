@@ -63,4 +63,8 @@ type Index[T any] interface {
 	// Returns:
 	// - httpclient.HTTPRequest
 	Client(endpoint string) httpclient.HTTPRequest
+	// Name - Returns the Index name
+	// Returns:
+	// - string
+	Name() string
 }
