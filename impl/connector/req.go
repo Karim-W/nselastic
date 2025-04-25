@@ -11,7 +11,7 @@ func (c *connector_) Req(
 		c.host + path,
 	)
 
-	if c.username != "" && c.password != "" {
+	if c.username != "" || c.password != "" {
 		req = req.AddBasicAuth(c.username, c.password)
 	}
 

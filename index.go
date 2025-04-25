@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/karim-w/gopts"
+	"github.com/karim-w/stdlib/httpclient"
 )
 
 type Index[T any] interface {
@@ -57,4 +58,9 @@ type Index[T any] interface {
 	// Returns:
 	// - error: an error if any.
 	Ensure() error
+	// Client -  Returns an HTTP Client to be build
+	// - endpoint: the elastic endpoint
+	// Returns:
+	// - httpclient.HTTPRequest
+	Client(endpoint string) httpclient.HTTPRequest
 }
